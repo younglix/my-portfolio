@@ -40,11 +40,5 @@ It’s a small frontend simulation, but it mirrors **real backend logic** like s
 
 Even though it’s all in HTML/JS, it’s designed to **look and feel like a real-world delivery system** you might find in production.
 
----
 
-## 🖥️ How to Check It Out
 
-1. Clone or download the repo:
-
-```bash
-git clone https://github.com/your-username/your-portfolio.git
