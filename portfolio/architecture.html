@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend DEVs</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">ISAAC</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+
+
+
+  <section>
+  <h2>Backend Architecture & Design</h2>
+  <p>
+    I focus on clarity, scalability, and operational simplicity.
+    Below is how I typically approach backend system design.
+  </p>
+</section>
+
+<section>
+  <h3>API Architecture</h3>
+  <ul>
+    <li>RESTful endpoints with predictable naming</li>
+    <li>JWT or session-based authentication</li>
+    <li>Versioned APIs (v1, v2)</li>
+    <li>Consistent request/response schemas</li>
+  </ul>
+
+  <pre><code>
+GET /api/v1/users/?page=1&limit=20
+POST /api/v1/auth/login
+  </code></pre>
+</section>
+
+<section>
+  <h3>Database Design</h3>
+  <p>
+    I design schemas around data integrity first, then performance.
+  </p>
+
+  <pre><code>
+users
+- id (PK)
+- email (unique, indexed)
+- password_hash
+- created_at
+
+orders
+- id (PK)
+- user_id (FK, indexed)
+- status
+- total_amount
+- created_at
+  </code></pre>
+
+  <p>
+    Indexing, constraints, and migrations are treated as first-class citizens.
+  </p>
+</section>
+
+<section>
+  <h3>Scalability & Reliability</h3>
+  <ul>
+    <li>Stateless services</li>
+    <li>Database connection pooling</li>
+    <li>Caching (Redis)</li>
+    <li>Background jobs (Celery / workers)</li>
+    <li>Structured logging and monitoring</li>
+  </ul>
+</section>
+
+
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Isaac Akhabue — Backend DEVs</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

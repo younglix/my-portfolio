@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rider App Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #38bdf8;
+      color: #020617;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #64748b;
+      cursor: not-allowed;
+    }
+
+    #description {
+  background-color: #111827;
+  border: 1px solid #1f2933;
+  border-radius: 8px;
+  padding: 1.5rem;
+  line-height: 1.5;
+}
+
+#viewDescBtn {
+  margin-left: 1rem;
+  background-color: #64748b;
+}
+
+#viewDescBtn:hover {
+  background-color: #475569;
+}
+
+    .card {
+      background: #111827;
+      border: 1px solid #1f2933;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      padding: 0.6rem;
+      border-radius: 6px;
+      background: #020617;
+      cursor: pointer;
+    }
+
+    .step.active {
+      background: #38bdf8;
+      color: #020617;
+      font-weight: 600;
+    }
+
+    .step.completed {
+      background: #16a34a;
+      color: #ecfdf5;
+    }
+
+    .history-item {
+      background: #020617;
+      border: 1px solid #1f2933;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Isaac Rider App</h1>
+  <button id="addOrderBtn">Add Order</button>
+  <button id="viewDescBtn">View Description</button>
+
+<!-- Hidden Description -->
+<div id="description" style="display:none; margin-top:1rem;">
+  <h2>Rider Order Workflow Demo</h2>
+  <p>
+    This page demonstrates a simplified <strong>rider delivery workflow</strong>, designed to simulate
+    how real-world delivery systems manage orders from assignment to completion.
+    Built with HTML & JavaScript, the logic mirrors backend order management.
+  </p>
+
+  <h3>Workflow Overview:</h3>
+  <ol>
+    <li><strong>Add Order</strong> – Creates a new active order.</li>
+    <li><strong>Accept Order</strong> – Rider accepts the order.</li>
+    <li><strong>At Vendor</strong> – Rider arrives at the vendor.</li>
+    <li><strong>Picked Up</strong> – Order collected from vendor.</li>
+    <li><strong>At Customer</strong> – Rider arrives at customer.</li>
+    <li><strong>Confirm Order</strong> – Order confirmed, moves to history.</li>
+  </ol>
+
+  <h3>Key Technical Concepts Demonstrated:</h3>
+  <ul>
+    <li>State machine enforcement – steps cannot be skipped.</li>
+    <li>Domain modeling – structured order objects with metadata.</li>
+    <li>Audit-ready timestamps – each step logs completion time.</li>
+    <li>Persistent history – orders saved across sessions.</li>
+    <li>Single active order constraint – only one order active at a time.</li>
+  </ul>
+</div>
+
+  <!-- ACTIVE ORDER -->
+  <div id="activeOrder"></div>
+
+  <!-- HISTORY -->
+  <h2 style="margin-top:3rem;">Order History</h2>
+  <div id="history"></div>
+
+  <script>
+"use strict";
+
+/* ======================
+  STATE & ELEMENTS
+====================== */
+let currentOrder = null;
+
+const steps = [
+  "Accept Order",
+  "At Vendor",
+  "Picked Up",
+  "At Customer",
+  "Confirm Order"
+];
+
+const addOrderBtn = document.getElementById("addOrderBtn");
+const activeOrderDiv = document.getElementById("activeOrder");
+const historyDiv = document.getElementById("history");
+const viewDescBtn = document.getElementById("viewDescBtn");
+const descriptionDiv = document.getElementById("description");
+
+/* ======================
+  EVENT LISTENERS
+====================== */
+addOrderBtn.addEventListener("click", createOrder);
+viewDescBtn.addEventListener("click", toggleDescription);
+
+/* Load history on page load */
+loadHistory();
+
+/* ======================
+  ORDER FUNCTIONS
+====================== */
+function createOrder() {
+  if (currentOrder) return;
+
+  currentOrder = {
+    id: Date.now(),
+    statusIndex: 0,
+    createdAt: new Date().toISOString(),
+    completedAt: null,
+    steps: steps.map(step => ({ name: step, completedAt: null }))
+  };
+
+  renderActiveOrder();
+}
+
+function renderActiveOrder() {
+  const stepHTML = currentOrder.steps.map((step, index) => {
+    let className = "step";
+    if (index === currentOrder.statusIndex) className += " active";
+    if (step.completedAt) className += " completed";
+
+    return `
+      <div class="${className}" data-index="${index}">
+        ${step.name}
+        ${step.completedAt ? `<small> (${formatTime(step.completedAt)})</small>` : ""}
+      </div>
+    `;
+  }).join("");
+
+  activeOrderDiv.innerHTML = `
+    <div class="card">
+      <h2>Order #${currentOrder.id}</h2>
+      <p><strong>Status:</strong> ${steps[currentOrder.statusIndex]}</p>
+      <p><strong>Created:</strong> ${formatTime(currentOrder.createdAt)}</p>
+
+      <div class="steps">
+        ${stepHTML}
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll(".step").forEach(step =>
+    step.addEventListener("click", handleStepClick)
+  );
+}
+
+function handleStepClick(e) {
+  const index = Number(e.target.dataset.index);
+
+  /* Enforce sequential steps */
+  if (index !== currentOrder.statusIndex) return;
+
+  currentOrder.steps[index].completedAt = new Date().toISOString();
+  currentOrder.statusIndex++;
+
+  if (currentOrder.statusIndex >= steps.length) {
+    completeOrder();
+  } else {
+    renderActiveOrder();
+  }
+}
+
+function completeOrder() {
+  currentOrder.completedAt = new Date().toISOString();
+  saveToHistory(currentOrder);
+
+  /* Reset active order */
+  currentOrder = null;
+  activeOrderDiv.innerHTML = "";
+
+  loadHistory();
+}
+
+/* ======================
+  HISTORY FUNCTIONS
+====================== */
+function saveToHistory(order) {
+  const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+  history.unshift(order); // newest on top
+  localStorage.setItem("orderHistory", JSON.stringify(history));
+}
+
+function loadHistory() {
+  const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+  historyDiv.innerHTML = "";
+
+  history.forEach(order => {
+    historyDiv.innerHTML += `
+      <div class="history-item">
+        <strong>Order #${order.id}</strong><br/>
+        Created: ${formatTime(order.createdAt)}<br/>
+        Completed: ${formatTime(order.completedAt)}
+      </div>
+    `;
+  });
+}
+
+/* ======================
+  UTILS
+====================== */
+function formatTime(iso) {
+  return new Date(iso).toLocaleString();
+}
+
+/* ======================
+  DESCRIPTION TOGGLE
+====================== */
+function toggleDescription() {
+  if (descriptionDiv.style.display === "none") {
+    descriptionDiv.style.display = "block";
+    viewDescBtn.innerText = "Hide Description";
+  } else {
+    descriptionDiv.style.display = "none";
+    viewDescBtn.innerText = "View Description";
+  }
+}
+</script>
+
+</body>
+</html>
