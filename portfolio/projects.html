@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backend DEVs | Isaac Akhahbue</title>
+  <meta name="description" content="Selected full-stack projects by Isaac Akhabue, including NexicFlow and ZyCrypt." />
+  <title>Projects | Isaac Akhabue</title>
+
+  <script>
+    (function () {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
@@ -13,63 +22,156 @@
 
   <header class="navbar">
     <div class="container">
-      <h1 class="logo">ISAAC</h1>
-      <nav>
+      <a href="index.html" class="logo">ISAAC</a>
+      <nav id="primaryNav">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
         <a href="architecture.html">Architecture</a>
         <a href="about.html">About</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="nav-cta">Hire Me</a>
       </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <span class="icon-moon">🌙</span>
+          <span class="icon-sun">☀️</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main class="container">
-   
 
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Projects</p>
+        <h2>Things I've built</h2>
+        <p>A look at full-stack products and demos that show how I think about building software.</p>
+      </div>
 
+      <!-- PROJECT: NexicFlow -->
+      <div class="project-card reveal">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+          </div>
+          <img src="assets/img/nexicflow.png" alt="NexicFlow business automation platform homepage" loading="lazy" />
+        </div>
+        <div class="project-body">
+          <h3>NexicFlow</h3>
+          <p>
+            An all-in-one business automation platform built for entrepreneurs —
+            generate a professional storefront in seconds, let a WhatsApp AI sales
+            agent handle customer chats and orders, run automated email and win-back
+            campaigns, and manage everything from one CRM. Designed so business
+            owners can run 24/7 without needing a developer.
+          </p>
 
+          <div class="badge-list">
+            <span class="badge">Next.js</span>
+            <span class="badge">FastAPI</span>
+            <span class="badge">PostgreSQL</span>
+            <span class="badge">Celery</span>
+            <span class="badge">Redis</span>
+            <span class="badge">WhatsApp API</span>
+            <span class="badge">Paystack</span>
+          </div>
 
+          <div class="project-links">
+            <a href="https://nexicflow.com" target="_blank" rel="noopener noreferrer" class="btn primary">Visit Site ↗</a>
+            <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="btn secondary">Request a Project ↗</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- PROJECT: ZyCrypt -->
+      <div class="project-card reveal">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+          </div>
+          <img src="assets/img/zycrypt.png" alt="ZyCrypt real-time crypto analytics dashboard" loading="lazy" />
+        </div>
+        <div class="project-body">
+          <h3>ZyCrypt</h3>
+          <p>
+            A real-time crypto analytics dashboard built for traders who want to
+            spot promising tokens early. Streams live activity across multiple
+            chains, tracks whale wallet movements, and supports coin comparisons
+            and personal watchlists — all powered by WebSocket connections and a
+            Redis-backed real-time data layer.
+          </p>
 
-<!-- PROJECT: Rider App Demo -->
-<div class="project-card" style="margin-bottom: 2rem; padding:1.5rem; border:1px solid #1f2933; border-radius:8px; background:#111827;">
-  <h3>Rider Order Workflow Demo</h3>
-  <p>
-    A simulated rider delivery app built with HTML, CSS, and JavaScript. 
-    It demonstrates a complete order lifecycle with sequential step updates, 
-    timestamps, and persistent order history. Designed to mimic backend workflow logic.
-  </p>
+          <div class="badge-list">
+            <span class="badge">Next.js</span>
+            <span class="badge">FastAPI</span>
+            <span class="badge">WebSocket</span>
+            <span class="badge">Redis</span>
+            <span class="badge">Multi-Chain APIs</span>
+          </div>
 
-  <!-- Key Features -->
-  <ul>
-    <li>Sequential order state machine (Accept → Vendor → Pickup → Customer → Confirm)</li>
-    <li>Step-level timestamps for audit/logging</li>
-    <li>Persistent order history using localStorage</li>
-    <li>Single active order constraint</li>
-    <li>Interactive workflow simulation</li>
-  </ul>
+          <div class="project-links">
+            <a href="https://zy-crypt.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn primary">Visit Site ↗</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- View Demo Button -->
-  
-<a href="ISAAC.HTML"><button 
-          style="background:#38bdf8; color:#020617; padding:0.6rem 1rem; border:none; border-radius:6px; cursor:pointer;">
-    View Demo
-  </button></a>
-</div>
+      <!-- PROJECT: Rider App Demo -->
+      <div class="project-card reveal">
+        <div class="project-body">
+          <h3>Rider Order Workflow Demo</h3>
+          <p>
+            A simulated rider delivery app built with HTML, CSS, and JavaScript.
+            It demonstrates a complete order lifecycle with sequential step updates,
+            timestamps, and persistent order history. Designed to mimic backend workflow logic.
+          </p>
 
+          <div class="badge-list">
+            <span class="badge">State Machine</span>
+            <span class="badge">Audit Timestamps</span>
+            <span class="badge">localStorage Persistence</span>
+            <span class="badge">Single Active Order</span>
+          </div>
 
+          <div class="project-links">
+            <a href="ISAAC.HTML" class="btn primary">View Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-
-
-
-
+    <section class="cta-banner reveal">
+      <p class="eyebrow">Like what you see?</p>
+      <h2>Let's build your <span class="text-gradient">next project</span></h2>
+      <p>
+        Whether it's a website, an app, or a custom system — tell me what you need
+        and I'll respond within 24 hours.
+      </p>
+      <div class="hero-actions">
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="btn primary">Request a Project ↗</a>
+      </div>
+    </section>
 
   </main>
 
   <footer class="footer">
-    <p>© 2026 Isaac Akhabue — Backend DEVs</p>
+    <div class="container">
+      <p>© 2026 Isaac Akhabue — Full-Stack Developer</p>
+      <div class="footer-links">
+        <a href="https://nexicflow.com" target="_blank" rel="noopener noreferrer">NexicFlow</a>
+        <a href="https://zy-crypt.vercel.app/" target="_blank" rel="noopener noreferrer">ZyCrypt</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer">Hire Me</a>
+      </div>
+    </div>
   </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <script src="assets/js/main.js"></script>
 </body>

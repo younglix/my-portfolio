@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backend DEVs</title>
+  <meta name="description" content="How Isaac Akhabue approaches backend architecture, real-time systems, and scalability." />
+  <title>Architecture | Isaac Akhabue</title>
+
+  <script>
+    (function () {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
@@ -12,52 +22,62 @@
 
   <header class="navbar">
     <div class="container">
-      <h1 class="logo">ISAAC</h1>
-      <nav>
+      <a href="index.html" class="logo">ISAAC</a>
+      <nav id="primaryNav">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
         <a href="architecture.html">Architecture</a>
         <a href="about.html">About</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="nav-cta">Hire Me</a>
       </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <span class="icon-moon">🌙</span>
+          <span class="icon-sun">☀️</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main class="container">
 
+    <section class="reveal">
+      <p class="eyebrow">Architecture</p>
+      <h2>Backend Architecture &amp; Design</h2>
+      <p class="hero-desc">
+        I focus on clarity, scalability, and operational simplicity.
+        Below is how I typically approach full-stack system design.
+      </p>
+    </section>
 
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">API Layer</p>
+        <h2>API Architecture</h2>
+      </div>
 
+      <div class="badge-list" style="margin-bottom: 1.5rem;">
+        <span class="badge">FastAPI / Django REST</span>
+        <span class="badge">JWT / Session Auth</span>
+        <span class="badge">Versioned APIs (v1, v2)</span>
+        <span class="badge">Consistent Schemas</span>
+      </div>
 
-  <section>
-  <h2>Backend Architecture & Design</h2>
-  <p>
-    I focus on clarity, scalability, and operational simplicity.
-    Below is how I typically approach backend system design.
-  </p>
-</section>
+      <pre><code>GET /api/v1/users/?page=1&amp;limit=20
+POST /api/v1/auth/login</code></pre>
+    </section>
 
-<section>
-  <h3>API Architecture</h3>
-  <ul>
-    <li>RESTful endpoints with predictable naming</li>
-    <li>JWT or session-based authentication</li>
-    <li>Versioned APIs (v1, v2)</li>
-    <li>Consistent request/response schemas</li>
-  </ul>
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Data Layer</p>
+        <h2>Database Design</h2>
+        <p>I design schemas around data integrity first, then performance.</p>
+      </div>
 
-  <pre><code>
-GET /api/v1/users/?page=1&limit=20
-POST /api/v1/auth/login
-  </code></pre>
-</section>
-
-<section>
-  <h3>Database Design</h3>
-  <p>
-    I design schemas around data integrity first, then performance.
-  </p>
-
-  <pre><code>
-users
+      <pre><code>users
 - id (PK)
 - email (unique, indexed)
 - password_hash
@@ -68,32 +88,103 @@ orders
 - user_id (FK, indexed)
 - status
 - total_amount
-- created_at
-  </code></pre>
+- created_at</code></pre>
 
-  <p>
-    Indexing, constraints, and migrations are treated as first-class citizens.
-  </p>
-</section>
+      <p style="margin-top: 1rem;">
+        Indexing, constraints, and migrations are treated as first-class citizens.
+      </p>
+    </section>
 
-<section>
-  <h3>Scalability & Reliability</h3>
-  <ul>
-    <li>Stateless services</li>
-    <li>Database connection pooling</li>
-    <li>Caching (Redis)</li>
-    <li>Background jobs (Celery / workers)</li>
-    <li>Structured logging and monitoring</li>
-  </ul>
-</section>
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Real-Time &amp; Background Processing</p>
+        <h2>Async Jobs &amp; Live Data</h2>
+        <p>
+          Used in products like <strong>NexicFlow</strong> (AI sales agent, campaigns)
+          and <strong>ZyCrypt</strong> (live multi-chain analytics).
+        </p>
+      </div>
 
+      <div class="badge-list" style="margin-bottom: 1.5rem;">
+        <span class="badge">Celery Workers</span>
+        <span class="badge">Redis Broker &amp; Cache</span>
+        <span class="badge">WebSocket Streams</span>
+        <span class="badge">Scheduled Tasks</span>
+        <span class="badge">Pub/Sub</span>
+      </div>
 
+      <pre><code># Celery task for an AI-driven campaign send
+@app.task(bind=True, max_retries=3)
+def send_campaign(self, campaign_id):
+    campaign = get_campaign(campaign_id)
+    for contact in campaign.contacts:
+        send_message.delay(contact.id, campaign.message)
+
+# Redis as cache + broker for Celery, and pub/sub
+# for pushing live updates to connected WebSocket clients</code></pre>
+    </section>
+
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Operations</p>
+        <h2>Scalability &amp; Reliability</h2>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🧩</div>
+          <h3>Stateless Services</h3>
+          <p>No server-side session state, so any instance can handle any request.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔗</div>
+          <h3>Connection Pooling</h3>
+          <p>Database connections are pooled to keep latency low under load.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Caching (Redis)</h3>
+          <p>Frequently accessed data is cached to reduce database pressure.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🛠</div>
+          <h3>Background Jobs</h3>
+          <p>Long-running work is offloaded to Celery / worker queues.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📊</div>
+          <h3>Observability</h3>
+          <p>Structured logging and monitoring across every service.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner reveal">
+      <p class="eyebrow">Need this for your project?</p>
+      <h2>Let's design it <span class="text-gradient">together</span></h2>
+      <p>
+        From architecture to deployment, I can help plan and build a system that
+        scales with your business.
+      </p>
+      <div class="hero-actions">
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="btn primary">Request a Project ↗</a>
+      </div>
+    </section>
 
   </main>
 
   <footer class="footer">
-    <p>© 2026 Isaac Akhabue — Backend DEVs</p>
+    <div class="container">
+      <p>© 2026 Isaac Akhabue — Full-Stack Developer</p>
+      <div class="footer-links">
+        <a href="https://nexicflow.com" target="_blank" rel="noopener noreferrer">NexicFlow</a>
+        <a href="https://zy-crypt.vercel.app/" target="_blank" rel="noopener noreferrer">ZyCrypt</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer">Hire Me</a>
+      </div>
+    </div>
   </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <script src="assets/js/main.js"></script>
 </body>

@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backend DEVs | Isaac Akhabue </title>
+  <meta name="description" content="About Isaac Akhabue — Full-Stack Developer working across Python/FastAPI/Django backends and Next.js/React Native frontends." />
+  <title>About | Isaac Akhabue</title>
+
+  <script>
+    (function () {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
@@ -13,69 +22,166 @@
 
   <header class="navbar">
     <div class="container">
-      <h1 class="logo">ISAAC</h1>
-      <nav>
+      <a href="index.html" class="logo">ISAAC</a>
+      <nav id="primaryNav">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
         <a href="architecture.html">Architecture</a>
         <a href="about.html">About</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="nav-cta">Hire Me</a>
       </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <span class="icon-moon">🌙</span>
+          <span class="icon-sun">☀️</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    
-      
 
+    <section class="reveal">
+      <p class="eyebrow">About Me</p>
+      <h2>A bit about how I work</h2>
+      <p class="hero-desc">
+        I'm a full-stack engineer who enjoys building products end to end —
+        reliable backends with Python, Django, FastAPI, Celery and Redis,
+        paired with fast, modern interfaces built in Next.js, React and React Native.
+      </p>
+    </section>
 
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Core Strengths</p>
+        <h2>Where I add the most value</h2>
+      </div>
 
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🐍</div>
+          <h3>Python Backends</h3>
+          <p>Django, Flask and FastAPI services with clean, well-tested business logic.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🗄</div>
+          <h3>Data &amp; Caching</h3>
+          <p>PostgreSQL schema design, SQLAlchemy, and Redis for caching and queues.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧵</div>
+          <h3>Async &amp; Background Jobs</h3>
+          <p>Celery workers, scheduled tasks, and event-driven processing pipelines.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💻</div>
+          <h3>Modern Frontends</h3>
+          <p>Next.js, React and Tailwind CSS interfaces that feel fast and polished.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>Mobile</h3>
+          <p>Cross-platform apps with React Native, sharing logic with the web app.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🏗</div>
+          <h3>System Design</h3>
+          <p>Architecting systems that are easy to reason about, test, and extend.</p>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>About Me</h2>
-  <p>
-    I’m a backend engineer focused on building reliable, maintainable,
-    and scalable server-side systems using Python.
-  </p>
-</section>
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">Tech Stack</p>
+        <h2>Tools I work with</h2>
+      </div>
 
-<section>
-  <h3>Experience & Interests</h3>
-  <ul>
-    <li>Backend development with Django and Flask</li>
-    <li>Relational databases (PostgreSQL)</li>
-    <li>System design and architecture</li>
-    <li>Performance and scalability challenges</li>
-  </ul>
-</section>
+      <div class="tech-stack">
+        <span class="label">Backend &amp; APIs</span>
+        <div class="badge-list">
+          <span class="badge">Python</span>
+          <span class="badge">Django</span>
+          <span class="badge">FastAPI</span>
+          <span class="badge">Flask</span>
+          <span class="badge">REST APIs</span>
+          <span class="badge">WebSockets</span>
+        </div>
+      </div>
 
-<section>
-  <h3>What I Enjoy Solving</h3>
-  <p>
-    I enjoy turning complex requirements into simple, well-structured backend systems,
-    especially problems involving data modeling, APIs, and system reliability.
-  </p>
-</section>
+      <div class="tech-stack">
+        <span class="label">Data &amp; Background Jobs</span>
+        <div class="badge-list">
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">SQLAlchemy</span>
+          <span class="badge">Celery</span>
+          <span class="badge">Redis</span>
+        </div>
+      </div>
 
-<section>
-  <h3>Resume & Links</h3>
-  <ul>
-    <li><a href="assets/docs/cv.pdf" target="_blank">Download CV (PDF)</a></li>
-    <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
-  </ul>
-</section>
+      <div class="tech-stack">
+        <span class="label">Frontend</span>
+        <div class="badge-list">
+          <span class="badge">React</span>
+          <span class="badge">Next.js</span>
+          <span class="badge">TypeScript</span>
+          <span class="badge">Tailwind CSS</span>
+        </div>
+      </div>
 
+      <div class="tech-stack">
+        <span class="label">Mobile &amp; Tools</span>
+        <div class="badge-list">
+          <span class="badge">React Native</span>
+          <span class="badge">Docker</span>
+          <span class="badge">Git</span>
+          <span class="badge">Vercel</span>
+          <span class="badge">Paystack / Stripe</span>
+        </div>
+      </div>
+    </section>
 
+    <section class="reveal">
+      <div class="section-header">
+        <p class="eyebrow">What I Enjoy Solving</p>
+        <h2>Turning complexity into clarity</h2>
+        <p>
+          I enjoy turning complex requirements into simple, well-structured systems,
+          especially problems involving data modeling, real-time data, APIs, and
+          the interfaces people actually use on top of them.
+        </p>
+      </div>
+    </section>
 
-
-
-
+    <section class="cta-banner reveal">
+      <p class="eyebrow">Get In Touch</p>
+      <h2>Resume &amp; Links</h2>
+      <p>Want to work together? Reach out or download my CV.</p>
+      <div class="hero-actions">
+        <a href="assets/docs/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn primary">Download CV (PDF)</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer" class="btn secondary">Hire Me ↗</a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="btn secondary">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="btn secondary">LinkedIn</a>
+      </div>
+    </section>
 
   </main>
 
   <footer class="footer">
-    <p>© 2026 Isaac Akhabue - Backend DEVs</p>
+    <div class="container">
+      <p>© 2026 Isaac Akhabue — Full-Stack Developer</p>
+      <div class="footer-links">
+        <a href="https://nexicflow.com" target="_blank" rel="noopener noreferrer">NexicFlow</a>
+        <a href="https://zy-crypt.vercel.app/" target="_blank" rel="noopener noreferrer">ZyCrypt</a>
+        <a href="https://nexicflow.com/build-with-me/" target="_blank" rel="noopener noreferrer">Hire Me</a>
+      </div>
+    </div>
   </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <script src="assets/js/main.js"></script>
 </body>
