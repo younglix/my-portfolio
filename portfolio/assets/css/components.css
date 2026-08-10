@@ -21,13 +21,13 @@
 
 .btn.primary {
   background: var(--gradient-primary);
-  color: #020617;
-  box-shadow: 0 8px 24px -8px rgba(56, 189, 248, 0.45);
+  color: #ffffff;
+  box-shadow: 0 8px 24px -8px rgba(59, 130, 246, 0.45);
 }
 
 .btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px -8px rgba(56, 189, 248, 0.55);
+  box-shadow: 0 12px 28px -8px rgba(59, 130, 246, 0.55);
 }
 
 .btn.secondary {
@@ -65,30 +65,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-}
-
-/* = STATUS PILL = */
-.status-pill {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: var(--radius-pill);
-  background-color: rgba(52, 211, 153, 0.1);
-  border: 1px solid rgba(52, 211, 153, 0.35);
-  color: var(--success-color);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
-.status-pill .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--success-color);
-  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
 }
 
 /* = HERO = */
@@ -187,7 +163,7 @@
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: rgba(59, 130, 246, 0.35);
   background-color: var(--surface-hover);
   box-shadow: var(--shadow-glow);
 }
@@ -199,10 +175,18 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: var(--radius-md);
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(59, 130, 246, 0.12);
   color: var(--primary-color);
-  font-size: 1.3rem;
   margin-bottom: 1rem;
+}
+
+.card .icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.cta-banner .highlight {
+  color: #7fa8ff;
 }
 
 .card h3 {
@@ -270,7 +254,7 @@
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: rgba(59, 130, 246, 0.35);
   box-shadow: var(--shadow-glow);
 }
 
@@ -307,30 +291,66 @@
   margin-top: 1.25rem;
 }
 
-/* = CTA BANNER = */
+/* = CTA BANNER (signature AkhaTech navy treatment) = */
 .cta-banner {
   text-align: center;
   padding: 3.5rem 2rem;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.12));
+  border: 1px solid var(--navy-color-strong);
+  background: linear-gradient(135deg, var(--navy-color), var(--navy-color-strong));
 }
 
 .cta-banner .eyebrow {
   justify-content: center;
+  color: #7fa8ff;
+}
+
+.cta-banner .eyebrow::before {
+  background: #7fa8ff;
 }
 
 .cta-banner h2 {
   margin-bottom: 0.75rem;
+  color: #ffffff;
 }
 
 .cta-banner p {
   max-width: 540px;
   margin: 0 auto 1.5rem;
+  color: #b7c3e6;
 }
 
 .cta-banner .hero-actions {
   justify-content: center;
+}
+
+.cta-banner .btn.secondary {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.cta-banner .btn.secondary:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.cta-banner .checklist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #dbe4ff;
+}
+
+.cta-banner .checklist span::before {
+  content: "✓";
+  color: #7fa8ff;
+  margin-right: 0.4rem;
 }
 
 /* = RESPONSIVE = */

@@ -1,8 +1,8 @@
-# My Portfolio & Rider Workflow Demo
+# AkhaTech Portfolio & Rider Workflow Demo
 
-Hi there! 👋 Welcome to my personal portfolio repository.  
+Hi there! 👋 Welcome to the **AkhaTech** portfolio repository — Isaac Akhabue's full-stack developer brand and website-building service.
 
-This site is my little corner to **showcase my skills as a backend developer**. It’s built with HTML, CSS, and JavaScript, and includes some fun interactive demos — including a **Rider Order Workflow Demo** that simulates a delivery system in action.
+This site showcases full-stack work and the range of websites AkhaTech builds for clients (business sites, e-commerce, dashboards, and more). It's built with HTML, CSS, and JavaScript, and includes some fun interactive demos — including a **Rider Order Workflow Demo** that simulates a delivery system in action.
 
 ---
 
